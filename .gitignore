@@ -1,0 +1,41 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Source photos and zips
+photos/
+*.zip
+*.heic
+IMG_*.JPG
+IMG_*.PNG
+IMG_*.jpeg
+0Y3A*.jpeg
+*.backup
+Screenshot*.png
+headshot.jpg
+Land-Rover-logo-*.png
+348429399_*.png
+05A6D3F2-*.jpeg
+EBB3EC7E-*.jpeg
+0725E96E-*.png

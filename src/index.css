@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Archivo+Black&family=Inter:wght@300;400;500;600&display=swap');
+
+@layer base {
+  :root {
+    --background: 230 25% 7%;
+    --foreground: 210 40% 96%;
+
+    --card: 230 20% 12%;
+    --card-foreground: 210 40% 96%;
+
+    --popover: 230 20% 12%;
+    --popover-foreground: 210 40% 96%;
+
+    --primary: 160 84% 50%;
+    --primary-foreground: 230 25% 7%;
+
+    --secondary: 230 20% 16%;
+    --secondary-foreground: 210 40% 96%;
+
+    --muted: 230 15% 18%;
+    --muted-foreground: 215 20% 55%;
+
+    --accent: 190 80% 50%;
+    --accent-foreground: 230 25% 7%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 230 15% 20%;
+    --input: 230 15% 20%;
+    --ring: 160 84% 50%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 230 20% 10%;
+    --sidebar-foreground: 210 40% 96%;
+    --sidebar-primary: 160 84% 50%;
+    --sidebar-primary-foreground: 230 25% 7%;
+    --sidebar-accent: 230 15% 18%;
+    --sidebar-accent-foreground: 210 40% 96%;
+    --sidebar-border: 230 15% 20%;
+    --sidebar-ring: 160 84% 50%;
+
+    --gradient-start: 160 84% 50%;
+    --gradient-mid: 190 80% 50%;
+    --gradient-end: 220 80% 55%;
+
+    --glass: 230 20% 14%;
+    --glass-border: 230 15% 24%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Archivo Black', sans-serif;
+  }
+}
+
+@layer utilities {
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(160 84% 50%), hsl(190 80% 50%), hsl(220 80% 55%));
+  }
+
+  .glass-card {
+    background: hsl(230 20% 14% / 0.6);
+    backdrop-filter: blur(16px);
+    border: 1px solid hsl(230 15% 24% / 0.5);
+  }
+
+  .gradient-border {
+    position: relative;
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, hsl(160 84% 50%), hsl(190 80% 50%), hsl(220 80% 55%));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  .hero-glow {
+    background: radial-gradient(ellipse 60% 50% at 50% 0%, hsl(160 84% 50% / 0.12) 0%, transparent 60%),
+                radial-gradient(ellipse 40% 40% at 80% 20%, hsl(220 80% 55% / 0.08) 0%, transparent 50%);
+  }
+}
