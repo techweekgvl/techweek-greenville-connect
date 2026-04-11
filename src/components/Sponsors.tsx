@@ -36,13 +36,13 @@ const Sponsors = () => {
             Key Program Sponsors
             <Star className="w-4 h-4 text-primary" />
           </h3>
-          <div className="flex flex-wrap justify-center items-center gap-12">
+          <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8 md:gap-12">
             {sponsors.map((sponsor) => (
               <div
                 key={sponsor.name}
                 className="flex items-center justify-center p-6 opacity-90 hover:opacity-100 transition-opacity duration-300"
               >
-                <img src={sponsor.logo} alt={sponsor.name} className="h-20 w-auto object-contain" />
+                <img src={sponsor.logo} alt={sponsor.name} className="h-12 sm:h-16 md:h-20 w-auto object-contain" />
               </div>
             ))}
           </div>

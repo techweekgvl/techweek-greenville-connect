@@ -13,7 +13,7 @@ const MarqueeRow = ({ images, direction = "left", duration = 40 }: { images: str
         transition={{ duration, repeat: Infinity, ease: "linear" }}
       >
         {doubled.map((src, i) => (
-          <div key={i} className="flex-shrink-0 w-[400px] h-[260px] rounded-xl overflow-hidden">
+          <div key={i} className="flex-shrink-0 w-[260px] sm:w-[320px] md:w-[400px] h-[170px] sm:h-[210px] md:h-[260px] rounded-xl overflow-hidden">
             <img src={src} alt="" className="w-full h-full object-cover" loading="lazy" />
           </div>
         ))}

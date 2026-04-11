@@ -43,7 +43,7 @@ const Schedule = () => {
             <button
               key={d.key}
               onClick={() => setActiveDay(d.key)}
-              className={`relative px-5 py-3 rounded-xl font-display text-sm font-medium transition-all duration-300 ${
+              className={`relative px-3 py-2 sm:px-5 sm:py-3 rounded-xl font-display text-xs sm:text-sm font-medium transition-all duration-300 ${
                 activeDay === d.key
                   ? "bg-primary text-primary-foreground shadow-[0_0_30px_hsl(var(--primary)/0.4)] scale-105"
                   : "bg-secondary/80 text-muted-foreground hover:text-foreground hover:bg-secondary"
@@ -64,7 +64,7 @@ const Schedule = () => {
             transition={{ duration: 0.4 }}
             className="text-center"
           >
-            <div className="glass-card rounded-2xl p-10 md:p-14 max-w-2xl mx-auto relative overflow-hidden">
+            <div className="glass-card rounded-2xl p-6 sm:p-10 md:p-14 max-w-2xl mx-auto relative overflow-hidden">
               {/* Glow behind */}
               <div className="absolute inset-0 bg-primary/5 rounded-2xl" />
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-1 bg-gradient-to-r from-transparent via-primary to-transparent" />
@@ -75,7 +75,7 @@ const Schedule = () => {
                   {active.day}
                 </span>
 
-                <h3 className="text-3xl md:text-4xl font-bold font-display mb-4 flex items-center justify-center gap-3">
+                <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold font-display mb-4 flex items-center justify-center gap-3">
                   <Sparkles className="w-7 h-7 text-primary" />
                   <span className="gradient-text">{active.theme.replace(/^.+?\s/, '')}</span>
                 </h3>

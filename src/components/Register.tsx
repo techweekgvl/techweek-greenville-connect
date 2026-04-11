@@ -42,7 +42,7 @@ const Register = () => {
   return (
     <section id="register" className="py-24 px-4 relative">
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="w-[500px] h-[500px] rounded-full bg-primary/5 blur-[120px]" />
+        <div className="w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] md:w-[500px] md:h-[500px] rounded-full bg-primary/5 blur-[120px]" />
       </div>
 
       <div className="max-w-xl mx-auto relative z-10">
