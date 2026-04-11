@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const row1 = Array.from({ length: 10 }, (_, i) => `/gallery/photo-${String(i + 1).padStart(2, "0")}.jpg`);
 const row2 = Array.from({ length: 9 }, (_, i) => `/gallery/photo-${String(i + 11).padStart(2, "0")}.jpg`);
+const allPhotos = [...row1, ...row2];
 
 const MarqueeRow = ({ images, direction = "left", duration = 40 }: { images: string[]; direction?: "left" | "right"; duration?: number }) => {
   const doubled = [...images, ...images];
@@ -13,7 +15,7 @@ const MarqueeRow = ({ images, direction = "left", duration = 40 }: { images: str
         transition={{ duration, repeat: Infinity, ease: "linear" }}
       >
         {doubled.map((src, i) => (
-          <div key={i} className="flex-shrink-0 w-[260px] sm:w-[320px] md:w-[400px] h-[170px] sm:h-[210px] md:h-[260px] rounded-xl overflow-hidden">
+          <div key={i} className="flex-shrink-0 w-[400px] h-[260px] rounded-xl overflow-hidden">
             <img src={src} alt="" className="w-full h-full object-cover" loading="lazy" />
           </div>
         ))}
@@ -23,6 +25,22 @@ const MarqueeRow = ({ images, direction = "left", duration = 40 }: { images: str
 };
 
 const PhotoBanner = () => {
+  const isMobile = useIsMobile();
+
+  if (isMobile) {
+    return (
+      <section className="py-10 overflow-hidden">
+        <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory px-4 pb-4 scrollbar-hide" style={{ WebkitOverflowScrolling: "touch" }}>
+          {allPhotos.map((src, i) => (
+            <div key={i} className="flex-shrink-0 w-[75vw] h-[50vw] rounded-xl overflow-hidden snap-center">
+              <img src={src} alt="" className="w-full h-full object-cover" loading="lazy" />
+            </div>
+          ))}
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="py-16 overflow-hidden">
       <div className="flex flex-col gap-4">
