@@ -58,7 +58,7 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
         >
           <span className="inline-block px-4 py-1.5 mb-8 text-sm font-medium rounded-full border border-primary/30 bg-primary/10 text-primary font-body">
-            September 21st – 26th, 2026 • Greenville, SC
+            September 20th – 26th, 2026 • Greenville, SC
           </span>
         </motion.div>
 

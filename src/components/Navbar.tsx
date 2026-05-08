@@ -22,6 +22,15 @@ const Navbar = () => {
 
   const scrollTo = (href: string) => {
     setOpen(false);
+    if (href === "#opportunities") {
+      const volunteer = document.querySelector("#volunteer");
+      const register = document.querySelector("#register");
+      if (volunteer && register) {
+        const midpoint = (volunteer.getBoundingClientRect().top + register.getBoundingClientRect().top) / 2 + window.scrollY;
+        window.scrollTo({ top: midpoint, behavior: "smooth" });
+        return;
+      }
+    }
     document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -80,9 +89,9 @@ const Navbar = () => {
             <Button
               size="sm"
               className="font-display bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_20px_hsl(var(--primary)/0.2)] hover:shadow-[0_0_30px_hsl(var(--primary)/0.4)] transition-shadow"
-              onClick={() => scrollTo("#register")}
+              onClick={() => scrollTo("#opportunities")}
             >
-              Register
+              Opportunities
             </Button>
           </motion.div>
         </div>
@@ -122,9 +131,9 @@ const Navbar = () => {
             <Button
               size="sm"
               className="w-full font-display bg-primary text-primary-foreground"
-              onClick={() => scrollTo("#register")}
+              onClick={() => scrollTo("#opportunities")}
             >
-              Register
+              Opportunities
             </Button>
           </motion.div>
         )}

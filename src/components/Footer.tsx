@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="text-center md:text-left">
           <h3 className="font-display font-bold text-lg gradient-text mb-1">Tech Week Greenville</h3>
-          <p className="text-sm text-muted-foreground font-body">September 21st – 26th, 2026 • Greenville, SC</p>
+          <p className="text-sm text-muted-foreground font-body">September 20th – 26th, 2026 • Greenville, SC</p>
         </div>
 
         <div className="flex items-center gap-4">

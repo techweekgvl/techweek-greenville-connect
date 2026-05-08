@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
+import { Mic2 } from "lucide-react";
 
 const team = [
-  { name: "Nick Dennis", role: "CoFounder", image: "/nick.jpg" },
+  { name: "Nick Dennis", role: "Founder", image: "/nick.jpg" },
   { name: "Daijah Surratt", role: "CoFounder", image: "/daijah.jpg" },
   { name: "Samson Baldwin", role: "CoFounder", image: "/samson.jpg" },
   { name: "Andrew Farrell", role: "CoFounder", image: "/andrew.jpg" },
 ];
 
-const speakerSlots = Array.from({ length: 6 }, (_, i) => i);
 
 const Speakers = () => {
   return (
@@ -48,7 +48,7 @@ const Speakers = () => {
 
         {/* Speakers */}
         <motion.div
-          className="text-center mb-12"
+          className="text-center mb-10"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -57,36 +57,43 @@ const Speakers = () => {
           <h2 className="text-3xl md:text-5xl font-bold font-display mb-4">
             Featured <span className="gradient-text">Speakers</span>
           </h2>
-          <p className="text-muted-foreground text-lg font-body">Speaker lineup coming soon — stay tuned!</p>
         </motion.div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 max-w-xl mx-auto">
-          {speakerSlots.map((id, i) => (
-            <motion.div
-              key={id}
-              className="glass-card rounded-xl p-4 text-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.06 }}
-            >
-              <div className="w-12 h-12 rounded-full mx-auto mb-2 bg-secondary flex items-center justify-center">
-                <span className="text-lg font-bold text-muted-foreground">?</span>
-              </div>
-              <p className="text-xs text-muted-foreground font-body">TBA</p>
-            </motion.div>
-          ))}
-        </div>
-
-        <motion.p
-          className="text-center mt-10 text-muted-foreground font-body"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+        <motion.div
+          className="glass-card rounded-2xl p-10 md:p-14 max-w-2xl mx-auto text-center relative overflow-hidden"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
         >
-          Interested in speaking?{" "}
-          <a href="#register" className="text-primary hover:underline font-medium">Get in touch →</a>
-        </motion.p>
+          <div className="absolute inset-0 bg-primary/5 rounded-2xl" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-1 bg-gradient-to-r from-transparent via-primary to-transparent" />
+
+          <div className="relative z-10">
+            <motion.div
+              className="w-16 h-16 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center mx-auto mb-6"
+              animate={{ scale: [1, 1.1, 1] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <Mic2 className="w-7 h-7 text-primary" />
+            </motion.div>
+
+            <h3 className="text-xl md:text-2xl font-bold font-display mb-3">Lineup Dropping Soon</h3>
+            <p className="text-muted-foreground font-body mb-6 max-w-md mx-auto">
+              We're lining up an incredible roster of founders, innovators, and industry leaders. Be the first to know when speakers are announced.
+            </p>
+
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-secondary text-sm text-muted-foreground font-body mb-6">
+              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              Announcements coming soon
+            </div>
+
+            <p className="text-muted-foreground font-body text-sm">
+              Interested in speaking?{" "}
+              <a href="#register" className="text-primary hover:underline font-medium">Get in touch →</a>
+            </p>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -6,7 +6,7 @@ import Schedule from "@/components/Schedule";
 import Speakers from "@/components/Speakers";
 import Sponsors from "@/components/Sponsors";
 import Volunteer from "@/components/Volunteer";
-import Register from "@/components/Register";
+import Opportunities from "@/components/Opportunities";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -20,7 +20,7 @@ const Index = () => {
       <Speakers />
       <Sponsors />
       <Volunteer />
-      <Register />
+      <Opportunities />
       <Footer />
     </div>
   );
