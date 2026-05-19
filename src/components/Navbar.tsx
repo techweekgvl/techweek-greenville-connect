@@ -55,7 +55,7 @@ const Navbar = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <img src="/twg-logo.png" alt="Tech Week Greenville" className="h-10" />
+          <img src="/twg-logo.png" alt="Tech Week Greenville" className="h-20" />
         </motion.a>
 
         {/* Desktop */}

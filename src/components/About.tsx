@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 import { Calendar, Users, Mic, Zap } from "lucide-react";
 
 const stats = [
-  { icon: Calendar, value: "6", label: "Days", color: "text-primary" },
-  { icon: Zap, value: "10", label: "Experiences", color: "text-accent" },
+  { icon: Calendar, value: "7", label: "Days", color: "text-primary" },
+  { icon: Zap, value: "11", label: "Experiences", color: "text-accent" },
   { icon: Mic, value: "Dozens", label: "of Speakers", color: "text-primary" },
   { icon: Users, value: "400+", label: "Anticipated Attendees", color: "text-accent" },
 ];

@@ -61,7 +61,7 @@ const Volunteer = () => {
             Volunteer with <span className="gradient-text">Tech Week</span>
           </h2>
           <p className="text-muted-foreground text-lg font-body max-w-2xl mx-auto">
-            Tech Week Greenville is a 6-day experience taking place September 20–26, 2026, bringing together founders, professionals, students, and creatives through panels, networking events, a pitch competition, and community activations.
+            Tech Week Greenville is a 7-day, 11-experience event taking place September 20–26, 2026, bringing together founders, professionals, students, and creatives through panels, networking events, a pitch competition, and community activations.
           </p>
         </motion.div>
 
