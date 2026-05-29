@@ -1,8 +1,11 @@
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const Hero = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden hero-glow">
       {/* Animated background grid */}
@@ -96,20 +99,20 @@ const Hero = () => {
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
             <Button
               size="lg"
-              className="text-base px-8 py-6 font-display font-semibold bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_30px_hsl(var(--primary)/0.3)] hover:shadow-[0_0_50px_hsl(var(--primary)/0.5)] transition-shadow"
-              onClick={() => document.getElementById('register')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              Register Now
-            </Button>
-          </motion.div>
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
-            <Button
-              size="lg"
               variant="outline"
               className="text-base px-8 py-6 font-display font-semibold border-primary/40 text-foreground hover:text-white hover:bg-primary/10 hover:border-primary/60 transition-all"
               onClick={() => document.getElementById('schedule')?.scrollIntoView({ behavior: 'smooth' })}
             >
               View Schedule
+            </Button>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
+            <Button
+              size="lg"
+              className="text-base px-8 py-6 font-display font-semibold bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_30px_hsl(var(--primary)/0.3)] hover:shadow-[0_0_50px_hsl(var(--primary)/0.5)] transition-shadow"
+              onClick={() => navigate('/tickets')}
+            >
+              Get Tickets
             </Button>
           </motion.div>
         </motion.div>

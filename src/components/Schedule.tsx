@@ -1,6 +1,13 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, CalendarDays, MapPin, Clock } from "lucide-react";
+import { Sparkles, CalendarDays, MapPin, Clock, CalendarPlus } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { downloadIcs, getGoogleCalendarUrl, getOutlookWebUrl } from "@/lib/calendar";
 
 interface EventDetails {
   event: string;
@@ -10,6 +17,8 @@ interface EventDetails {
   description: string;
   panels?: string[];
   includes: string[];
+  start?: string;
+  end?: string;
 }
 
 interface DayData {
@@ -27,6 +36,8 @@ const days: DayData[] = [
       event: "Opening Social Mixer (Free)",
       location: "Yee-Haw Brewing",
       time: "4:00 PM – 8:00 PM",
+      start: "2026-09-20T16:00:00-04:00",
+      end: "2026-09-20T20:00:00-04:00",
       description: "Kick off Tech Week with an unforgettable opening experience designed to spark connections and set the tone for the days ahead. The Level-Up Launch is where the community comes together—founders, creatives, tech professionals, and curious minds—to begin the journey. Enjoy a high-energy atmosphere featuring a kickoff video, live panel discussions with professionals in tech, and your first opportunity to network with attendees from across the ecosystem.",
       panels: ["5:15 PM – 5:40 PM", "6:00 PM – 6:30 PM"],
       includes: ["Networking mixer access", "Panel discussions", "Light food & beverages"],
@@ -40,6 +51,8 @@ const days: DayData[] = [
         event: "Conversation & Coffee",
         location: "Starbucks (Outdoor Patio)",
         time: "10:00 AM – 11:35 AM",
+        start: "2026-09-21T10:00:00-04:00",
+        end: "2026-09-21T11:35:00-04:00",
         description: "Start your day with intentional conversations and meaningful connections. Founders Fuel is a relaxed, open-format gathering where entrepreneurs, builders, and tech enthusiasts come together over coffee to exchange ideas, share challenges, and talk through what's next in tech.",
         includes: ["Curated experience", "Coffee & light breakfast bites"],
       },
@@ -48,6 +61,8 @@ const days: DayData[] = [
         event: "Pitch Competition + Panels",
         location: "Camelot Theater",
         time: "5:30 PM – 8:15 PM",
+        start: "2026-09-21T17:30:00-04:00",
+        end: "2026-09-21T20:15:00-04:00",
         description: "Step into a curated, high-energy environment where innovation takes center stage. Hosted inside a theater setting, this event reimagines the traditional pitch competition with a more immersive and elevated experience. Watch founders present their ideas live for a chance to win the Tech Innovation Grant.",
         panels: ["6:15 PM – 6:30 PM", "6:35 PM – 7:00 PM"],
         includes: ["Pitch competition access", "Panel discussions", "Food & beverages"],
@@ -61,6 +76,8 @@ const days: DayData[] = [
       event: "Tech & Brews",
       location: "Business & Brews",
       time: "5:30 PM – 8:15 PM",
+      start: "2026-09-22T17:30:00-04:00",
+      end: "2026-09-22T20:15:00-04:00",
       description: "Where conversations turn into opportunities. Deal Flow & Connections Night is designed to bring founders, investors, operators, and professionals into one room to build real relationships and explore what's next. This experience goes beyond traditional networking—creating an environment where ideas are exchanged, partnerships are formed, and deals begin to take shape.",
       includes: ["Keynote speaker session", "Curated experience", "Food & beverages"],
     }],
@@ -73,6 +90,8 @@ const days: DayData[] = [
         event: "Invite-Only Breakfast",
         location: "Downtown (Private Venue)",
         time: "9:30 AM – 11:30 AM",
+        start: "2026-09-23T09:30:00-04:00",
+        end: "2026-09-23T11:30:00-04:00",
         description: "An exclusive, invite-only experience curated for speakers, sponsors, and select founders. This intimate breakfast is designed to foster meaningful conversations, build deeper relationships, and create alignment among key contributors shaping Tech Week.",
         includes: ["Private networking experience", "Breakfast & beverages"],
       },
@@ -81,6 +100,8 @@ const days: DayData[] = [
         event: "Tech Connect",
         location: "SynergyMill",
         time: "5:30 PM – 8:30 PM",
+        start: "2026-09-23T17:30:00-04:00",
+        end: "2026-09-23T20:30:00-04:00",
         description: "Tech Connect is where the broader community comes together. Designed for all levels—from students to seasoned professionals—this event highlights opportunities in STEM, showcases local tech companies, and creates space to discover who's who in the ecosystem.",
         panels: ["6:35 PM – 7:15 PM"],
         includes: ["Access to tech showcases & exhibits", "Panel discussion", "Food & beverages"],
@@ -95,6 +116,8 @@ const days: DayData[] = [
         event: "Women in Tech Brunch",
         location: "Urbana Churro Café",
         time: "10:30 AM – 1:30 PM",
+        start: "2026-09-24T10:30:00-04:00",
+        end: "2026-09-24T13:30:00-04:00",
         description: "An empowering and intentional space for women to connect, share, and grow. This brunch experience brings together women across industries to discuss how technology impacts their careers, businesses, and everyday lives. Expect meaningful dialogue, authentic connection, and a supportive environment designed to uplift and inspire.",
         includes: ["Curated brunch experience", "Community discussions", "Food & beverages"],
       },
@@ -115,6 +138,8 @@ const days: DayData[] = [
       event: "Tech Unleashed: Live & Loud",
       location: "Flywheel Co-Working",
       time: "5:30 PM – 9:00 PM",
+      start: "2026-09-25T17:30:00-04:00",
+      end: "2026-09-25T21:00:00-04:00",
       description: "As the week builds toward its finale, Tech Unleashed brings energy, music, and celebration together. Featuring a live performance, keynote speaker, and Tech Week Awards, this event is all about recognizing impact while keeping the momentum going.",
       includes: ["Live music experience", "Keynote speaker", "Awards presentation", "Food & beverages"],
     }],
@@ -127,20 +152,60 @@ const days: DayData[] = [
         event: "Working Room x Mixer",
         location: "K's Bistro",
         time: "11:30 AM – 2:30 PM",
+        start: "2026-09-26T11:30:00-04:00",
+        end: "2026-09-26T14:30:00-04:00",
         description: "Celebrate culture, community, and impact at this outdoor panel and mixer experience. Focused on excellence, this event highlights leaders, innovators, and voices making a difference. Enjoy a vibrant atmosphere with music, meaningful conversation, and community recognition.",
         includes: ["Panel discussion", "Workshop mixer", "Food & beverages"],
       },
       {
         theme: "Tech On Top",
         event: "Tech on Top",
-        location: "TBD (Rooftop)",
-        time: "7:30 PM – 11:00 PM",
+        location: "Plant Stella",
+        time: "6:00 PM – 9:00 PM",
+        start: "2026-09-26T18:00:00-04:00",
+        end: "2026-09-26T21:00:00-04:00",
         description: "Close out Tech Week in style. Tech on Top is a laid-back rooftop social designed to celebrate the connections, ideas, and energy built throughout the week. With a DJ, giveaways, and a relaxed vibe, this is your final chance to connect, unwind, and leave inspired.",
         includes: ["Rooftop social experience", "DJ & entertainment", "Giveaways & swag bags", "Food & beverages"],
       },
     ],
   },
 ];
+
+const AddToCalendarButton = ({ event }: { event: EventDetails }) => {
+  if (!event.start || !event.end) return null;
+
+  const calendarEvent = {
+    title: `Tech Week Greenville: ${event.event}`,
+    description: event.description,
+    location: event.location,
+    start: event.start,
+    end: event.end,
+  };
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/10 border border-primary/20 text-primary hover:bg-primary/20 transition-colors text-sm font-body font-medium">
+        <CalendarPlus className="w-4 h-4" />
+        Add to Calendar
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="center" className="min-w-[180px]">
+        <DropdownMenuItem asChild>
+          <a href={getGoogleCalendarUrl(calendarEvent)} target="_blank" rel="noopener noreferrer">
+            Google Calendar
+          </a>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <a href={getOutlookWebUrl(calendarEvent)} target="_blank" rel="noopener noreferrer">
+            Outlook
+          </a>
+        </DropdownMenuItem>
+        <DropdownMenuItem onSelect={() => downloadIcs(calendarEvent)}>
+          Apple / iCal (.ics)
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+};
 
 const EventCard = ({ event }: { event: EventDetails }) => (
   <div className="glass-card rounded-2xl p-6 sm:p-8 relative overflow-hidden flex-1">
@@ -185,7 +250,7 @@ const EventCard = ({ event }: { event: EventDetails }) => (
         </div>
       )}
 
-      <div>
+      <div className="mb-5">
         <p className="text-sm font-semibold font-display text-foreground mb-2">What's Included:</p>
         <div className="flex flex-wrap justify-center gap-2">
           {event.includes.map((item, i) => (
@@ -194,6 +259,10 @@ const EventCard = ({ event }: { event: EventDetails }) => (
             </span>
           ))}
         </div>
+      </div>
+
+      <div className="flex justify-center">
+        <AddToCalendarButton event={event} />
       </div>
     </div>
   </div>

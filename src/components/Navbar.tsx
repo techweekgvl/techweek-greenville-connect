@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const links = [
@@ -13,6 +14,8 @@ const links = [
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -20,8 +23,32 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (location.pathname !== "/") return;
+    const hash = location.hash;
+    if (!hash) return;
+    // Give the homepage a tick to mount its sections before scrolling.
+    const t = setTimeout(() => {
+      if (hash === "#opportunities") {
+        const volunteer = document.querySelector("#volunteer");
+        const register = document.querySelector("#register");
+        if (volunteer && register) {
+          const midpoint = (volunteer.getBoundingClientRect().top + register.getBoundingClientRect().top) / 2 + window.scrollY;
+          window.scrollTo({ top: midpoint, behavior: "smooth" });
+          return;
+        }
+      }
+      document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
+    return () => clearTimeout(t);
+  }, [location.pathname, location.hash]);
+
   const scrollTo = (href: string) => {
     setOpen(false);
+    if (location.pathname !== "/") {
+      navigate(`/${href}`);
+      return;
+    }
     if (href === "#opportunities") {
       const volunteer = document.querySelector("#volunteer");
       const register = document.querySelector("#register");
@@ -49,14 +76,19 @@ const Navbar = () => {
       <div className={`absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent transition-opacity duration-500 ${scrolled ? "opacity-100" : "opacity-0"}`} />
 
       <div className="max-w-6xl mx-auto flex items-center justify-between h-16 px-4">
-        <motion.a
-          href="#"
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        <motion.button
+          onClick={() => {
+            if (location.pathname !== "/") {
+              navigate("/");
+            } else {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+          }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
           <img src="/twg-logo.png" alt="Tech Week Greenville" className="h-20" />
-        </motion.a>
+        </motion.button>
 
         {/* Desktop */}
         <div className="hidden md:flex items-center gap-8">
