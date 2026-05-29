@@ -21,6 +21,21 @@
   <meta name="twitter:title" content="Tech Week Greenville | Sept 20 – Sept 26, 2026">
   <meta property="og:description" content="Tech Week Greenville celebrates and connects Greenville&#39;s tech community. Seven days. Eleven experiences. Talks, workshops, networking, and innovation.">
   <meta name="twitter:description" content="Tech Week Greenville celebrates and connects Greenville&#39;s tech community. Seven days. Eleven experiences. Talks, workshops, networking, and innovation.">
+
+  <script>
+    // Decode SPA redirect from 404.html so deep links like /tickets work
+    // on GitHub Pages. Pattern: https://github.com/rafgraph/spa-github-pages
+    (function (l) {
+      if (l.search[1] === '/') {
+        var decoded = l.search.slice(1).split('&').map(function (s) {
+          return s.replace(/~and~/g, '&');
+        }).join('?');
+        window.history.replaceState(null, null,
+          l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    })(window.location);
+  </script>
 </head>
   <body>
     <div id="root"></div>
