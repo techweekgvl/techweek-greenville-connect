@@ -1,11 +1,5 @@
 import { motion } from "framer-motion";
-import { Star } from "lucide-react";
-
-const sponsors = [
-  { name: "Porsche", logo: "/porsche.png" },
-  { name: "Land Rover", logo: "/landrover-removebg-preview.png" },
-  { name: "SynergyMill", logo: "/synergymill-removebg-preview.png" },
-];
+import { Sparkles } from "lucide-react";
 
 const Sponsors = () => {
   return (
@@ -24,27 +18,37 @@ const Sponsors = () => {
           <p className="text-muted-foreground text-lg font-body">Powered by the companies building Greenville's future</p>
         </motion.div>
 
-        {/* Key Program Sponsors */}
+        {/* Sponsors to be announced */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
+          className="flex items-center justify-center"
         >
-          <h3 className="text-center text-sm uppercase tracking-widest text-muted-foreground font-display mb-8 flex items-center justify-center gap-2">
-            <Star className="w-4 h-4 text-primary" />
-            Key Program Sponsors
-            <Star className="w-4 h-4 text-primary" />
-          </h3>
-          <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8 md:gap-12">
-            {sponsors.map((sponsor) => (
-              <div
-                key={sponsor.name}
-                className="flex items-center justify-center p-6 opacity-90 hover:opacity-100 transition-opacity duration-300"
-              >
-                <img src={sponsor.logo} alt={sponsor.name} className="h-12 sm:h-16 md:h-20 w-auto object-contain" />
-              </div>
-            ))}
+          <div className="inline-flex items-center gap-3 rounded-full border border-border/60 bg-card/30 px-6 py-3">
+            <motion.span
+              className="text-primary"
+              animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
+              transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <Sparkles className="w-5 h-5" />
+            </motion.span>
+            <span className="inline-flex items-end gap-1.5">
+              <span className="text-lg md:text-xl font-bold font-display gradient-text leading-none">
+                To Be Announced Soon
+              </span>
+              <span className="flex items-center gap-1 mb-0.5">
+                {[0, 1, 2].map((i) => (
+                  <motion.span
+                    key={i}
+                    className="w-1.5 h-1.5 rounded-full bg-primary"
+                    animate={{ opacity: [0.2, 1, 0.2] }}
+                    transition={{ duration: 1.2, repeat: Infinity, delay: i * 0.2, ease: "easeInOut" }}
+                  />
+                ))}
+              </span>
+            </span>
           </div>
         </motion.div>
 
