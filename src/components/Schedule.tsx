@@ -49,7 +49,7 @@ const days: DayData[] = [
       {
         theme: "Founders Fuel",
         event: "Conversation & Coffee",
-        location: "Starbucks (Outdoor Patio)",
+        location: "Starbucks (Outdoor Patio) — 2807 Woodruff Rd, Simpsonville, SC 29681",
         time: "10:00 AM – 11:35 AM",
         start: "2026-09-21T10:00:00-04:00",
         end: "2026-09-21T11:35:00-04:00",
@@ -74,7 +74,7 @@ const days: DayData[] = [
     events: [{
       theme: "Deal Flow & Connections",
       event: "Tech & Brews",
-      location: "Business & Brews",
+      location: "City Club Greenville — 55 Beattie Pl, 17th Floor, Greenville, SC 29601",
       time: "5:30 PM – 8:15 PM",
       start: "2026-09-22T17:30:00-04:00",
       end: "2026-09-22T20:15:00-04:00",
@@ -290,7 +290,7 @@ const Schedule = () => {
           <h2 className="text-3xl md:text-5xl font-bold font-display mb-4">
             The <span className="gradient-text">Week</span>
           </h2>
-          <p className="text-muted-foreground text-lg font-body">Sept 20 – 27 • Seven days. Eleven experiences. One community.</p>
+          <p className="text-muted-foreground text-lg font-body">Sept 20 – 26 • Seven days. Eleven experiences. One community.</p>
         </motion.div>
 
         {/* Day selector — pill style */}
