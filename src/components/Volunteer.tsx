@@ -142,8 +142,13 @@ const Volunteer = () => {
                     className="bg-secondary border-border h-12 font-body"
                   />
                   <Textarea
-                    name="skills"
-                    placeholder="Skills or experience you'd like to contribute (optional)"
+                    name="strengths"
+                    placeholder="What strengths or previous experience would you bring as a Tech Week Greenville volunteer? (optional)"
+                    className="bg-secondary border-border font-body min-h-[80px]"
+                  />
+                  <Textarea
+                    name="photography_experience"
+                    placeholder="Do you have any photography experience? (optional)"
                     className="bg-secondary border-border font-body min-h-[80px]"
                   />
                   <Button
