@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { CheckCircle2, Mail, Calendar, ArrowLeft } from "lucide-react";
+import { CheckCircle2, Mail, Calendar, MapPin, BadgeCheck, ArrowLeft } from "lucide-react";
 import posthog from "posthog-js";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -54,20 +54,53 @@ const ThankYou = () => {
                 You're <span className="gradient-text">in.</span>
               </h1>
               <p className="text-lg text-muted-foreground font-body mb-8">
-                Thanks for your support — your ticket to Tech Week Greenville is confirmed.
+                Thank you for purchasing your Tech Week Greenville pass.
               </p>
+
+              {/* Credential pickup callout */}
+              <div className="text-left mb-6 max-w-md mx-auto rounded-xl border border-primary/30 bg-primary/10 p-5">
+                <div className="flex items-start gap-3">
+                  <MapPin className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                  <div className="font-body">
+                    <p className="font-display font-semibold text-foreground mb-1">
+                      Credential pickup
+                    </p>
+                    <p className="text-sm text-foreground/90">
+                      Sunday, September 20 · 4:00 PM – 8:00 PM
+                    </p>
+                    <p className="text-sm text-foreground/90">Yeehaw Brewery</p>
+                  </div>
+                </div>
+              </div>
 
               <div className="space-y-3 text-left mb-8 max-w-md mx-auto">
                 <div className="flex items-start gap-3 text-sm font-body">
+                  <BadgeCheck className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                  <span className="text-muted-foreground">
+                    <span className="text-foreground font-semibold">
+                      You must have an event lanyard to attend Tech Week Greenville.
+                    </span>{" "}
+                    Pick yours up at the time and place above.
+                  </span>
+                </div>
+                <div className="flex items-start gap-3 text-sm font-body">
                   <Mail className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                   <span className="text-muted-foreground">
-                    A receipt is on its way to your inbox. Hang onto it — you'll need it at credential pickup.
+                    A receipt is on its way to your inbox. Hang onto it — you'll need it at
+                    credential pickup.
                   </span>
                 </div>
                 <div className="flex items-start gap-3 text-sm font-body">
                   <Calendar className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                   <span className="text-muted-foreground">
-                    Tech Week runs Sept 20 – 26, 2026 in Greenville, SC. We'll send credential pickup details closer to the date.
+                    Can't make it on Sunday? Reach out to{" "}
+                    <a
+                      href="mailto:TechWeekgvl@gmail.com"
+                      className="text-primary hover:underline font-medium break-all"
+                    >
+                      TechWeekgvl@gmail.com
+                    </a>{" "}
+                    for next steps.
                   </span>
                 </div>
               </div>
