@@ -1,10 +1,57 @@
 import { motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
+import { Star } from "lucide-react";
+
+interface Partner {
+  name: string;
+  logo: string;
+  /** Monochrome light-on-transparent marks need inverting to read on a white tile. */
+  invert?: boolean;
+}
+
+const sponsors: Partner[] = [
+  { name: "The Tech Store", logo: "/sponsors/tech-store.png" },
+  { name: "SynergyMill", logo: "/sponsors/synergymill.png" },
+];
+
+const communityPartners: Partner[] = [
+  { name: "i4 Series", logo: "/sponsors/i4-series.png" },
+  { name: "Furman — The Hill Institute for Innovation and Entrepreneurship", logo: "/sponsors/hill-institute.png" },
+  { name: "Business & Brews", logo: "/sponsors/business-brews.png", invert: true },
+  { name: "Carolina Code Conference", logo: "/sponsors/carolina-code.webp" },
+  { name: "Startup GVL", logo: "/sponsors/startup-gvl.png" },
+  { name: "nextGEN", logo: "/sponsors/nextgen.png" },
+  { name: "Porsche", logo: "/sponsors/porsche.png" },
+];
+
+const GroupHeading = ({ label }: { label: string }) => (
+  <h3 className="text-center text-sm uppercase tracking-widest text-muted-foreground font-display mb-8 flex items-center justify-center gap-2">
+    <Star className="w-4 h-4 text-primary" />
+    {label}
+    <Star className="w-4 h-4 text-primary" />
+  </h3>
+);
+
+const LogoTile = ({ partner, size }: { partner: Partner; size: "lg" | "sm" }) => (
+  <div
+    className={`flex items-center justify-center rounded-xl bg-white shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 ${
+      size === "lg" ? "h-24 w-48 sm:w-56 px-6" : "h-20 w-36 px-4"
+    }`}
+  >
+    <img
+      src={partner.logo}
+      alt={partner.name}
+      loading="lazy"
+      className={`max-w-full w-auto object-contain ${
+        size === "lg" ? "max-h-14" : "max-h-11"
+      } ${partner.invert ? "invert" : ""}`}
+    />
+  </div>
+);
 
 const Sponsors = () => {
   return (
     <section id="sponsors" className="py-24 px-4">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
@@ -18,37 +65,34 @@ const Sponsors = () => {
           <p className="text-muted-foreground text-lg font-body">Powered by the companies building Greenville's future</p>
         </motion.div>
 
-        {/* Sponsors to be announced */}
+        {/* Sponsors */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="flex items-center justify-center"
         >
-          <div className="inline-flex items-center gap-3 rounded-full border border-border/60 bg-card/30 px-6 py-3">
-            <motion.span
-              className="text-primary"
-              animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
-              transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <Sparkles className="w-5 h-5" />
-            </motion.span>
-            <span className="inline-flex items-end gap-1.5">
-              <span className="text-lg md:text-xl font-bold font-display gradient-text leading-none">
-                To Be Announced Soon
-              </span>
-              <span className="flex items-center gap-1 mb-0.5">
-                {[0, 1, 2].map((i) => (
-                  <motion.span
-                    key={i}
-                    className="w-1.5 h-1.5 rounded-full bg-primary"
-                    animate={{ opacity: [0.2, 1, 0.2] }}
-                    transition={{ duration: 1.2, repeat: Infinity, delay: i * 0.2, ease: "easeInOut" }}
-                  />
-                ))}
-              </span>
-            </span>
+          <GroupHeading label="Sponsors" />
+          <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8">
+            {sponsors.map((partner) => (
+              <LogoTile key={partner.name} partner={partner} size="lg" />
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Community Partners */}
+        <motion.div
+          className="mt-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
+          <GroupHeading label="Community Partners" />
+          <div className="flex flex-wrap justify-center items-center gap-5 sm:gap-6">
+            {communityPartners.map((partner) => (
+              <LogoTile key={partner.name} partner={partner} size="sm" />
+            ))}
           </div>
         </motion.div>
 

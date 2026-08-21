@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, CalendarDays, MapPin, Clock, CalendarPlus } from "lucide-react";
+import { Sparkles, CalendarDays, MapPin, Clock, CalendarPlus, ExternalLink } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,6 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { downloadIcs, getGoogleCalendarUrl, getOutlookWebUrl } from "@/lib/calendar";
+import posthog from "posthog-js";
 
 interface EventDetails {
   event: string;
@@ -19,6 +20,7 @@ interface EventDetails {
   includes: string[];
   start?: string;
   end?: string;
+  signupUrl?: string;
 }
 
 interface DayData {
@@ -123,11 +125,14 @@ const days: DayData[] = [
       },
       {
         theme: "Trailblazers in Tech",
-        event: "AI Experience (Details Coming Soon)",
+        event: "Hired for What, Exactly? AI, Education, and the Workforce SC Is Building",
         location: "TBD",
-        time: "TBD",
-        description: "Step into the future with an immersive event centered around artificial intelligence. This experience will blend innovation, creativity, and conversation—designed to feel both cutting-edge and accessible. More details to be announced soon.",
-        includes: ["Interactive AI-focused experience", "Food & beverages"],
+        time: "4:30 PM – 6:30 PM",
+        start: "2026-09-24T16:30:00-04:00",
+        end: "2026-09-24T18:30:00-04:00",
+        description: "Google is coming to Greenville. Lilyn Hester, who leads Google's AI education work across seven states, joins Danny Dorsel of the SC Governor's School for Science and Mathematics and local business leaders to talk about what AI is doing to entry-level jobs and how South Carolina is training for it. Presented in collaboration with the i4 Series.",
+        includes: ["Panel discussion", "Q&A", "Food & beverages"],
+        signupUrl: "https://www.eventbrite.com/e/hired-for-what-exactly-ai-education-the-workforce-sc-is-building-tickets-1997724953112",
       },
     ],
   },
@@ -174,6 +179,9 @@ const days: DayData[] = [
 const AddToCalendarButton = ({ event }: { event: EventDetails }) => {
   if (!event.start || !event.end) return null;
 
+  const trackCalendar = (provider: "google" | "outlook" | "ics") =>
+    posthog.capture("add_to_calendar_clicked", { event: event.event, provider });
+
   const calendarEvent = {
     title: `Tech Week Greenville: ${event.event}`,
     description: event.description,
@@ -190,16 +198,16 @@ const AddToCalendarButton = ({ event }: { event: EventDetails }) => {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="center" className="min-w-[180px]">
         <DropdownMenuItem asChild>
-          <a href={getGoogleCalendarUrl(calendarEvent)} target="_blank" rel="noopener noreferrer">
+          <a href={getGoogleCalendarUrl(calendarEvent)} target="_blank" rel="noopener noreferrer" onClick={() => trackCalendar("google")}>
             Google Calendar
           </a>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <a href={getOutlookWebUrl(calendarEvent)} target="_blank" rel="noopener noreferrer">
+          <a href={getOutlookWebUrl(calendarEvent)} target="_blank" rel="noopener noreferrer" onClick={() => trackCalendar("outlook")}>
             Outlook
           </a>
         </DropdownMenuItem>
-        <DropdownMenuItem onSelect={() => downloadIcs(calendarEvent)}>
+        <DropdownMenuItem onSelect={() => { trackCalendar("ics"); downloadIcs(calendarEvent); }}>
           Apple / iCal (.ics)
         </DropdownMenuItem>
       </DropdownMenuContent>
@@ -261,7 +269,21 @@ const EventCard = ({ event }: { event: EventDetails }) => (
         </div>
       </div>
 
-      <div className="flex justify-center">
+      <div className="flex flex-wrap justify-center items-center gap-3">
+        {event.signupUrl && (
+          <a
+            href={event.signupUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() =>
+              posthog.capture("event_signup_clicked", { event: event.event, url: event.signupUrl })
+            }
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors text-sm font-body font-medium"
+          >
+            <ExternalLink className="w-4 h-4" />
+            Sign Up
+          </a>
+        )}
         <AddToCalendarButton event={event} />
       </div>
     </div>

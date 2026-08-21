@@ -38,9 +38,19 @@ const TicketCard = ({ tier }: { tier: TicketTier }) => {
         </h3>
         <p className="text-sm text-muted-foreground font-body mb-4">{tier.tagline}</p>
 
-        <div className="flex items-baseline gap-1 mb-5">
-          <span className="text-4xl sm:text-5xl font-bold font-display text-foreground">${tier.price}</span>
-          <span className="text-sm text-muted-foreground font-body">one-time</span>
+        <div className="mb-5">
+          {tier.compareAtPrice && (
+            <p className="text-base font-display text-muted-foreground line-through decoration-2 leading-none mb-1">
+              ${tier.compareAtPrice}
+            </p>
+          )}
+          <div className="flex items-baseline gap-1">
+            <span className="text-4xl sm:text-5xl font-bold font-display text-foreground">${tier.price}</span>
+            <span className="text-sm text-muted-foreground font-body">one-time</span>
+          </div>
+          {tier.priceNote && (
+            <p className="mt-1.5 text-xs text-primary font-body">{tier.priceNote}</p>
+          )}
         </div>
 
         <ul className="space-y-2 mb-5 flex-1">

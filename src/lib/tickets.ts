@@ -4,6 +4,10 @@ export interface TicketTier {
   id: TicketTierId;
   name: string;
   price: number;
+  /** Display-only anchor price, rendered struck through. Does not affect checkout. */
+  compareAtPrice?: number;
+  /** Display-only note rendered under the price. */
+  priceNote?: string;
   tagline: string;
   includes: string[];
   disclaimer?: string;
@@ -16,6 +20,7 @@ export const TICKET_TIERS: TicketTier[] = [
     id: "full_week",
     name: "Full Week Pass",
     price: 125,
+    compareAtPrice: 210,
     tagline: "Every event, every day.",
     includes: [
       "Access to all 11 events Sept 20–26",
@@ -57,6 +62,7 @@ export const TICKET_TIERS: TicketTier[] = [
     id: "day_pass",
     name: "Day Pass",
     price: 25,
+    priceNote: "Includes access to Tuesday",
     tagline: "Drop in for a day.",
     includes: [
       "Pick the day at checkout",
