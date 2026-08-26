@@ -20,7 +20,6 @@ const communityPartners: Partner[] = [
   { name: "Carolina Code Conference", logo: "/sponsors/carolina-code.webp" },
   { name: "Startup GVL", logo: "/sponsors/startup-gvl.png" },
   { name: "nextGEN", logo: "/sponsors/nextgen.png" },
-  { name: "Porsche", logo: "/sponsors/porsche.png" },
 ];
 
 const GroupHeading = ({ label }: { label: string }) => (
