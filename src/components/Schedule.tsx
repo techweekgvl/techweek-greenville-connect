@@ -145,8 +145,8 @@ const days: DayData[] = [
       time: "5:30 PM – 9:00 PM",
       start: "2026-09-25T17:30:00-04:00",
       end: "2026-09-25T21:00:00-04:00",
-      description: "As the week builds toward its finale, Tech Unleashed brings energy, music, and celebration together. Featuring a live performance, keynote speaker, and Tech Week Awards, this event is all about recognizing impact while keeping the momentum going.",
-      includes: ["Live music experience", "Keynote speaker", "Awards presentation", "Food & beverages"],
+      description: "As the week builds toward its finale, Tech Unleashed brings energy, music, and celebration together. Featuring a live performance and keynote speaker, this event is all about celebrating the community while keeping the momentum going.",
+      includes: ["Live music experience", "Keynote speaker", "Food & beverages"],
     }],
   },
   {
