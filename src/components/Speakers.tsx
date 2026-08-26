@@ -242,7 +242,7 @@ const Speakers = () => {
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
               <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-2xl mx-auto mb-4 overflow-hidden ring-2 ring-primary/40">
-                <img src={member.image} alt={member.name} className={`w-full h-full object-cover ${member.name === "Daijah Surratt" ? "object-[center_20%]" : "object-top"}`} />
+                <img src={member.image} alt={member.name} className="w-full h-full object-cover object-top" />
               </div>
               <h3 className="text-base font-semibold font-display">{member.name}</h3>
               <p className="text-sm text-primary font-body font-medium">{member.role}</p>
