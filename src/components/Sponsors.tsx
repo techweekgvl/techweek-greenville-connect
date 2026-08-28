@@ -1,15 +1,17 @@
 import { motion } from "framer-motion";
-import { Star } from "lucide-react";
+import { ExternalLink, Star } from "lucide-react";
 
 interface Partner {
   name: string;
   logo: string;
   /** Monochrome light-on-transparent marks need inverting to read on a white tile. */
   invert?: boolean;
+  /** Partners with a landing page get a linked tile, flagged as clickable. */
+  url?: string;
 }
 
 const sponsors: Partner[] = [
-  { name: "The Tech Store", logo: "/sponsors/tech-store.png" },
+  { name: "The Tech Store", logo: "/sponsors/tech-store.png", url: "https://thetechstoresc.com/gnvl/" },
   { name: "SynergyMill", logo: "/sponsors/synergymill.png" },
 ];
 
@@ -30,12 +32,12 @@ const GroupHeading = ({ label }: { label: string }) => (
   </h3>
 );
 
-const LogoTile = ({ partner, size }: { partner: Partner; size: "lg" | "sm" }) => (
-  <div
-    className={`flex items-center justify-center rounded-xl bg-white shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 ${
-      size === "lg" ? "h-24 w-48 sm:w-56 px-6" : "h-20 w-36 px-4"
-    }`}
-  >
+const LogoTile = ({ partner, size }: { partner: Partner; size: "lg" | "sm" }) => {
+  const tile = `relative flex items-center justify-center rounded-xl bg-white shadow-sm transition-all duration-300 ${
+    size === "lg" ? "h-24 w-48 sm:w-56 px-6" : "h-20 w-36 px-4"
+  }`;
+
+  const logo = (
     <img
       src={partner.logo}
       alt={partner.name}
@@ -44,8 +46,28 @@ const LogoTile = ({ partner, size }: { partner: Partner; size: "lg" | "sm" }) =>
         size === "lg" ? "max-h-14" : "max-h-11"
       } ${partner.invert ? "invert" : ""}`}
     />
-  </div>
-);
+  );
+
+  if (!partner.url) {
+    return <div className={`${tile} hover:shadow-lg hover:-translate-y-0.5`}>{logo}</div>;
+  }
+
+  // Hover alone reads as static on touch, so the ring and badge stay visible at rest.
+  return (
+    <a
+      href={partner.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`Visit ${partner.name} (opens in a new tab)`}
+      className={`${tile} group ring-2 ring-primary/50 hover:ring-primary hover:shadow-xl hover:shadow-primary/20 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary`}
+    >
+      {logo}
+      <span className="absolute -top-2 -right-2 flex h-7 w-7 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-md transition-transform duration-300 group-hover:scale-110">
+        <ExternalLink className="h-3.5 w-3.5" strokeWidth={2.5} />
+      </span>
+    </a>
+  );
+};
 
 const Sponsors = () => {
   return (
