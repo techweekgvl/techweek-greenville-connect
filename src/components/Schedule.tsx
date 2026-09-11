@@ -49,6 +49,17 @@ const days: DayData[] = [
     date: "Mon 9/21", key: "mon", day: "Monday",
     events: [
       {
+        theme: "Ignite AI",
+        event: "AI Readiness Summit",
+        location: "Furman Innovation Lab @ Flywheel Coworking",
+        time: "8:30 AM – 4:30 PM",
+        start: "2026-09-21T08:30:00-04:00",
+        end: "2026-09-21T16:30:00-04:00",
+        description: "A one-day summit to move organizations from AI curiosity to AI readiness. Futurist Mike Bechtel and stress physiologist Dr. Rebecca Heiss headline, joined by regional leaders from Current Lighting, AMECO, Build Carolina, and NUVEXA AI. The afternoon turns to application with a hands-on AI Design Thinking Sprint. Hosted by the Furman Innovation Lab; separate registration at $295, or $1,000 for a table of four.",
+        includes: ["Two keynote speakers", "Regional leader panel", "AI design thinking sprint"],
+        signupUrl: "https://innovationlab.furman.edu/ignite-ai/",
+      },
+      {
         theme: "Founders Fuel",
         event: "Conversation & Coffee",
         location: "Starbucks (Outdoor Patio) — 2807 Woodruff Rd, Simpsonville, SC 29681",
@@ -312,7 +323,7 @@ const Schedule = () => {
           <h2 className="text-3xl md:text-5xl font-bold font-display mb-4">
             The <span className="gradient-text">Week</span>
           </h2>
-          <p className="text-muted-foreground text-lg font-body">Sept 20 – 26 • Seven days. Eleven experiences. One community.</p>
+          <p className="text-muted-foreground text-lg font-body">Sept 20 – 26 • Seven days. Twelve experiences. One community.</p>
         </motion.div>
 
         {/* Day selector — pill style */}
