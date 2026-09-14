@@ -17,6 +17,8 @@ interface EventDetails {
   time: string;
   description: string;
   panels?: string[];
+  /** On-stage billing for the event: host, moderator, panelists, guests. */
+  lineup?: { role: string; name: string; title?: string }[];
   includes: string[];
   start?: string;
   end?: string;
@@ -41,6 +43,13 @@ const days: DayData[] = [
       start: "2026-09-20T16:00:00-04:00",
       end: "2026-09-20T20:00:00-04:00",
       description: "Kick off Tech Week with an unforgettable opening experience designed to spark connections and set the tone for the days ahead. The Level-Up Launch is where the community comes together—founders, creatives, tech professionals, and curious minds—to begin the journey. Enjoy a high-energy atmosphere featuring a kickoff video, live panel discussions with professionals in tech, and your first opportunity to network with attendees from across the ecosystem.",
+      lineup: [
+        { role: "Host", name: "Rachelle Hellams" },
+        { role: "Panelist", name: "Eric Weissmann", title: "Operator, Next Gen Greenville" },
+        { role: "Panelist", name: "Benten Woodring", title: "Founder, Pixel Pushers" },
+        { role: "Panelist", name: "Mark Bush", title: "Chief Technology Officer, Sports Data Collective" },
+        { role: "Panelist", name: "Alecia Brewster", title: "Founder, Ready and Eligible" },
+      ],
       panels: ["5:15 PM – 5:40 PM", "6:00 PM – 6:30 PM"],
       includes: ["Networking mixer access", "Panel discussions", "Light food & beverages"],
     }],
@@ -67,6 +76,12 @@ const days: DayData[] = [
         start: "2026-09-21T10:00:00-04:00",
         end: "2026-09-21T11:35:00-04:00",
         description: "Start your day with intentional conversations and meaningful connections. Founders Fuel is a relaxed, open-format gathering where entrepreneurs, builders, and tech enthusiasts come together over coffee to exchange ideas, share challenges, and talk through what's next in tech.",
+        lineup: [
+          { role: "Moderator", name: "Erine Kabous" },
+          { role: "Guest", name: "Nicholas Dennis", title: "Founder, Tech Week Greenville" },
+          { role: "Guest", name: "Dylan Whitman", title: "Founder & Venture Capitalist" },
+          { role: "Guest", name: "Barry Jones", title: "VP of IT & Operator, Carolina Code Conference" },
+        ],
         includes: ["Curated experience", "Coffee & light breakfast bites"],
       },
       {
@@ -77,6 +92,10 @@ const days: DayData[] = [
         start: "2026-09-21T17:30:00-04:00",
         end: "2026-09-21T20:15:00-04:00",
         description: "Step into a curated, high-energy environment where innovation takes center stage. Hosted inside a theater setting, this event reimagines the traditional pitch competition with a more immersive and elevated experience. Watch founders present their ideas live for a chance to win the Tech Innovation Grant.",
+        lineup: [
+          { role: "Host & Moderator", name: "Adrianna Mallory" },
+          { role: "Featured Guest", name: "Kenzie Biggins", title: "Founder, Worxbee" },
+        ],
         panels: ["6:15 PM – 6:30 PM", "6:35 PM – 7:00 PM"],
         includes: ["Pitch competition access", "Panel discussions", "Food & beverages"],
       },
@@ -171,6 +190,10 @@ const days: DayData[] = [
         start: "2026-09-26T11:30:00-04:00",
         end: "2026-09-26T14:30:00-04:00",
         description: "Celebrate culture, community, and impact at this outdoor panel and mixer experience. Focused on excellence, this event highlights leaders, innovators, and voices making a difference. Enjoy a vibrant atmosphere with music, meaningful conversation, and community recognition.",
+        lineup: [
+          { role: "Moderator", name: "Irene Kabous" },
+          { role: "Featured Guest", name: "Jason Lavoie", title: "Owner, Internet Discounts4U" },
+        ],
         includes: ["Panel discussion", "Workshop mixer", "Food & beverages"],
       },
       {
@@ -255,6 +278,22 @@ const EventCard = ({ event }: { event: EventDetails }) => (
       <p className="text-muted-foreground font-body text-sm leading-relaxed mb-4 text-left">
         {event.description}
       </p>
+
+      {event.lineup && (
+        <div className="mb-4 text-left">
+          <p className="text-sm font-semibold font-display text-foreground mb-2 text-center">Lineup:</p>
+          <ul className="space-y-1.5">
+            {event.lineup.map((person) => (
+              <li key={person.name} className="text-sm font-body leading-snug">
+                <span className="text-primary">{person.role}</span>
+                <span className="text-muted-foreground"> &middot; </span>
+                <span className="text-foreground font-medium">{person.name}</span>
+                {person.title && <span className="text-muted-foreground"> &mdash; {person.title}</span>}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       {event.panels && (
         <div className="mb-4">

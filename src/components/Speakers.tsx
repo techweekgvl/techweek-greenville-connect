@@ -22,7 +22,7 @@ const speakers: Speaker[] = [
   { name: "Alecia Brewster", role: "Founder, Eligible", day: "Sun 9/20", image: "/speakers/alecia-brewster.jpg" },
   { name: "Really Rykki", role: "Host & Data Analyst", day: "Sun 9/20", image: "/speakers/really-rykki.jpg" },
   { name: "Barry Jones", role: "VP of IT, ThoroughCare · Carolina Code Conference", day: "Mon 9/21", image: "/speakers/barry-jones.jpg" },
-  { name: "Kenzie Biggins", day: "Mon 9/21", image: "/speakers/kenzie-biggins.jpg" },
+  { name: "Kenzie Biggins", role: "Founder, Worxbee", day: "Mon 9/21", image: "/speakers/kenzie-biggins.jpg" },
   { name: "Lelia King", role: "Executive Director, Build Carolina", day: "Mon 9/21", image: "/speakers/lelia-king.jpg" },
   { name: "Shaler Houser", role: "Founder, Founderville Podcast · Pitch Judge", day: "Mon 9/21", image: "/speakers/shaler-houser.jpg" },
   { name: "Bryan Davis", role: "Executive Director, The Hill Institute — Furman University", day: "Mon 9/21", image: "/speakers/bryan-davis.jpg" },
