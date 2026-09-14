@@ -18,6 +18,7 @@ const sponsors: Partner[] = [
 const communityPartners: Partner[] = [
   { name: "i4 Series", logo: "/sponsors/i4-series.png" },
   { name: "Furman — The Hill Institute for Innovation and Entrepreneurship", logo: "/sponsors/hill-institute.png" },
+  { name: "Furman — Center for Innovative Leadership", logo: "/sponsors/furman-cil.png" },
   { name: "Business & Brews", logo: "/sponsors/business-brews.png", invert: true },
   { name: "Carolina Code Conference", logo: "/sponsors/carolina-code.webp" },
   { name: "Startup GVL", logo: "/sponsors/startup-gvl.png" },
