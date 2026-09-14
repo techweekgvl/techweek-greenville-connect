@@ -17,11 +17,11 @@ interface Speaker {
 }
 
 const speakers: Speaker[] = [
-  { name: "Eric Weissmann", role: "Ecosystem Builder & Economic Development Leader", day: "Sun 9/20", image: "/speakers/eric-weissmann.jpg" },
-  { name: "Benten Woodring", role: "CEO, NOOON Studio", day: "Sun 9/20", image: "/speakers/benten-woodring.jpg" },
-  { name: "Alecia Brewster", role: "Founder, Eligible", day: "Sun 9/20", image: "/speakers/alecia-brewster.jpg" },
+  { name: "Eric Weissmann", role: "Operator, Next Gen Greenville", day: "Sun 9/20", image: "/speakers/eric-weissmann.jpg" },
+  { name: "Benten Woodring", role: "Founder, Pixel Pushers", day: "Sun 9/20", image: "/speakers/benten-woodring.jpg" },
+  { name: "Alecia Brewster", role: "Founder, Ready and Eligible", day: "Sun 9/20", image: "/speakers/alecia-brewster.jpg" },
   { name: "Really Rykki", role: "Host & Data Analyst", day: "Sun 9/20", image: "/speakers/really-rykki.jpg" },
-  { name: "Barry Jones", role: "VP of IT, ThoroughCare · Carolina Code Conference", day: "Mon 9/21", image: "/speakers/barry-jones.jpg" },
+  { name: "Barry Jones", role: "VP of IT & Operator, Carolina Code Conference", day: "Mon 9/21", image: "/speakers/barry-jones.jpg" },
   { name: "Kenzie Biggins", role: "Founder, Worxbee", day: "Mon 9/21", image: "/speakers/kenzie-biggins.jpg" },
   { name: "Lelia King", role: "Executive Director, Build Carolina", day: "Mon 9/21", image: "/speakers/lelia-king.jpg" },
   { name: "Shaler Houser", role: "Founder, Founderville Podcast · Pitch Judge", day: "Mon 9/21", image: "/speakers/shaler-houser.jpg" },
