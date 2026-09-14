@@ -191,7 +191,7 @@ const days: DayData[] = [
         end: "2026-09-26T14:30:00-04:00",
         description: "Celebrate culture, community, and impact at this outdoor panel and mixer experience. Focused on excellence, this event highlights leaders, innovators, and voices making a difference. Enjoy a vibrant atmosphere with music, meaningful conversation, and community recognition.",
         lineup: [
-          { role: "Moderator", name: "Irene Kabous" },
+          { role: "Moderator", name: "Erine Kabous" },
           { role: "Featured Guest", name: "Jason Lavoie", title: "Owner, Internet Discounts4U" },
         ],
         includes: ["Panel discussion", "Workshop mixer", "Food & beverages"],
