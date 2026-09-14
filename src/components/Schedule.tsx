@@ -104,14 +104,18 @@ const days: DayData[] = [
   {
     date: "Tue 9/22", key: "tue", day: "Tuesday",
     events: [{
-      theme: "Deal Flow & Connections",
-      event: "Tech & Brews",
-      location: "City Club Greenville — 55 Beattie Pl, 17th Floor, Greenville, SC 29601",
-      time: "5:30 PM – 8:15 PM",
-      start: "2026-09-22T17:30:00-04:00",
-      end: "2026-09-22T20:15:00-04:00",
-      description: "Where conversations turn into opportunities. Deal Flow & Connections Night is designed to bring founders, investors, operators, and professionals into one room to build real relationships and explore what's next. This experience goes beyond traditional networking—creating an environment where ideas are exchanged, partnerships are formed, and deals begin to take shape.",
-      includes: ["Keynote speaker session", "Curated experience", "Food & beverages"],
+      theme: "Business Building 101",
+      event: "Fireside Chat",
+      location: "Flywheel Coworking",
+      time: "6:00 PM – 8:00 PM",
+      start: "2026-09-22T18:00:00-04:00",
+      end: "2026-09-22T20:00:00-04:00",
+      description: "Tuesday's plans have changed — our City Club event won't be going ahead, and we're sorry for the switch. In its place, Business Building 101 puts Bryan Davis and Lawson Pope in conversation for an honest look at what building a business actually takes: powerful insights, straight answers, and advice you can act on the next morning. More details to come.",
+      lineup: [
+        { role: "Featured Guest", name: "Bryan Davis", title: "Executive Director, The Hill Institute — Furman University" },
+        { role: "Featured Guest", name: "Lawson Pope", title: "Founder, Enduragum" },
+      ],
+      includes: ["Fireside chat", "Candid Q&A", "More details to come"],
     }],
   },
   {
