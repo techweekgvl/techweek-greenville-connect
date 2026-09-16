@@ -12,7 +12,7 @@ interface Partner {
 
 const sponsors: Partner[] = [
   { name: "The Tech Store", logo: "/sponsors/tech-store.png", url: "https://thetechstoresc.com/gnvl/" },
-  { name: "SynergyMill", logo: "/sponsors/synergymill.png" },
+  { name: "SynergyMill", logo: "/sponsors/synergymill.png", url: "https://www.synergymill.com/" },
 ];
 
 const communityPartners: Partner[] = [
