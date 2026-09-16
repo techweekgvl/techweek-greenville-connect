@@ -8,6 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { downloadIcs, getGoogleCalendarUrl, getOutlookWebUrl } from "@/lib/calendar";
+import { I4_SERIES_EVENT } from "@/lib/tickets";
 import posthog from "posthog-js";
 
 interface EventDetails {
@@ -160,13 +161,13 @@ const days: DayData[] = [
       {
         theme: "Trailblazers in Tech",
         event: "Hired for What, Exactly? AI, Education, and the Workforce SC Is Building",
-        location: "TBD",
+        location: "Greenville Technical College — Center for Manufacturing Innovation",
         time: "4:30 PM – 6:30 PM",
         start: "2026-09-24T16:30:00-04:00",
         end: "2026-09-24T18:30:00-04:00",
         description: "Google is coming to Greenville. Lilyn Hester, who leads Google's AI education work across seven states, joins Danny Dorsel of the SC Governor's School for Science and Mathematics and local business leaders to talk about what AI is doing to entry-level jobs and how South Carolina is training for it. Presented in collaboration with the i4 Series.",
         includes: ["Panel discussion", "Q&A", "Food & beverages"],
-        signupUrl: "https://www.eventbrite.com/e/hired-for-what-exactly-ai-education-the-workforce-sc-is-building-tickets-1997724953112",
+        signupUrl: I4_SERIES_EVENT.eventbriteUrl,
       },
     ],
   },

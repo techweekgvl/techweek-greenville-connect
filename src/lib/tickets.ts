@@ -15,6 +15,18 @@ export interface TicketTier {
   highlighted?: boolean;
 }
 
+/**
+ * Partner event with its own Eventbrite registration, not covered by a pass.
+ * Shared so the schedule card and the tickets page can't drift apart.
+ */
+export const I4_SERIES_EVENT = {
+  name: "Hired for What, Exactly?",
+  subtitle: "AI, Education & the Workforce SC Is Building",
+  day: "Thursday, Sept 24",
+  eventbriteUrl:
+    "https://www.eventbrite.com/e/hired-for-what-exactly-ai-education-the-workforce-sc-is-building-tickets-1997724953112",
+};
+
 export const TICKET_TIERS: TicketTier[] = [
   {
     id: "full_week",

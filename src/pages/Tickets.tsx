@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { Check, Sparkles, AlertCircle } from "lucide-react";
+import { Check, Sparkles, AlertCircle, ExternalLink } from "lucide-react";
 import posthog from "posthog-js";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { TICKET_TIERS, type TicketTier } from "@/lib/tickets";
+import { I4_SERIES_EVENT, TICKET_TIERS, type TicketTier } from "@/lib/tickets";
 
 const TicketCard = ({ tier }: { tier: TicketTier }) => {
   const handleBuy = () => {
@@ -139,6 +139,34 @@ const Tickets = () => {
           >
             <span className="font-semibold text-primary">Sunday, Sept 20 is free.</span>{" "}
             The Opening Mixer at Yee-Haw Brewing is open to all — no ticket required.
+          </motion.div>
+
+          <motion.div
+            className="max-w-2xl mx-auto mb-10 px-4 py-4 rounded-xl bg-secondary/60 border border-primary/20 text-center text-sm font-body text-muted-foreground"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <p>
+              <span className="font-semibold text-foreground">{I4_SERIES_EVENT.day}: {I4_SERIES_EVENT.name}</span>{" "}
+              — {I4_SERIES_EVENT.subtitle}. This i4 Series panel is ticketed separately from the passes below.
+            </p>
+            <a
+              href={I4_SERIES_EVENT.eventbriteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() =>
+                posthog.capture("event_signup_clicked", {
+                  event: I4_SERIES_EVENT.name,
+                  url: I4_SERIES_EVENT.eventbriteUrl,
+                  source: "tickets_page",
+                })
+              }
+              className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors font-medium"
+            >
+              <ExternalLink className="w-4 h-4" />
+              Register on Eventbrite
+            </a>
           </motion.div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
