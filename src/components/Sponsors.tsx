@@ -14,6 +14,9 @@ const sponsors: Partner[] = [
   { name: "The Tech Store", logo: "/sponsors/tech-store.png", url: "https://thetechstoresc.com/gnvl/" },
   { name: "SynergyMill", logo: "/sponsors/synergymill.png", url: "https://www.synergymill.com/" },
   { name: "Internet Solutions Co.", logo: "/sponsors/internet-solutions.png", url: "https://internetdiscounts4u.com/contact/" },
+  { name: "DL6", logo: "/sponsors/dl6.png" },
+  { name: "Sports Data Collective", logo: "/sponsors/sports-data-collective.png" },
+  { name: "Rollin' Birdies", logo: "/sponsors/rollin-birdies.png" },
 ];
 
 const communityPartners: Partner[] = [

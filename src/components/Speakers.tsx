@@ -36,6 +36,7 @@ const speakers: Speaker[] = [
   { name: "Sam Konduros", role: "President & CEO, Greenville City Economic Development Corp.", day: "Fri 9/25", image: "/speakers/sam-konduros.jpg" },
   { name: "Harold Hughes", role: "Angel Investor & Startup Advisor — Clemson University", day: "Sat 9/26", image: "/speakers/harold-hughes.jpg" },
   { name: "Micki Blendz", role: "Host & DJ", day: "Sat 9/26", image: "/speakers/micki-blendz.jpg" },
+  { name: "Jason Lavoie", role: "Owner, Internet Discounts4U", day: "Sat 9/26", image: "/speakers/jason-lavoie.jpg" },
 ];
 
 // Two speakers per column so the row reads as two swipeable rows.
